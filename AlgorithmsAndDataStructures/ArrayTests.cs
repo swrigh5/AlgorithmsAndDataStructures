@@ -16,6 +16,7 @@ namespace AlgorithmsAndDataStructures
         public void SetUp()
         {
             array = new DynamicArray(2);
+           
         }
 
 
@@ -27,5 +28,17 @@ namespace AlgorithmsAndDataStructures
         }
 
 
+        [Test]
+        public void insert()
+        {
+            array.Set(0, "Stephen");
+            array.Set(1, "Kyle");
+
+            array.insert(1, "Matt");
+
+            Assert.That(array.Get(0), Is.EqualTo("Stephen"));
+            Assert.That(array.Get(1), Is.EqualTo("Matt"));
+            Assert.That(array.Get(2), Is.EqualTo("Kyle"));
+        }
     }
 }

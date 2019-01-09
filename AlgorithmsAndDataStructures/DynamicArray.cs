@@ -27,6 +27,35 @@ namespace AlgorithmsAndDataStructures
         {
             data[index] = value;
         }
+
+        public void insert(int index, string value)
+        {
+            //Check size
+            if (size == initialCapacity)
+                resize();
+
+            //Copy Up
+            for (int j = size; j > index; j--)
+                data[j] = data[j - 1];
+
+            //Insert
+            data[index] = value;
+            size++;
+
+
+        }
+
+
+        private void resize()
+        {
+            object[] newData = new object[initialCapacity * 2];
+
+            for (int i = 0; i < initialCapacity; i++)
+                newData[i] = data[i];
+
+            data = newData;
+            initialCapacity = initialCapacity * 2;
+        }
         
     }
 }
