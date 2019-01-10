@@ -10,12 +10,12 @@ namespace AlgorithmsAndDataStructures
     [TestFixture]
     class ArrayTests
     {
-        private DynamicArray array;
+        private DynamicArray<String> array;
 
         [SetUp]
         public void SetUp()
         {
-            array = new DynamicArray(2);
+            array = new DynamicArray<String>(2);
            
         }
 
@@ -31,14 +31,72 @@ namespace AlgorithmsAndDataStructures
         [Test]
         public void insert()
         {
-            array.Set(0, "Stephen");
-            array.Set(1, "Kyle");
+            array.add("Stephen");
+            array.add("Michael");
+            array.add("Wright");
+    
 
-            array.insert(1, "Matt");
+            array.insert(2, "Is");
 
             Assert.That(array.Get(0), Is.EqualTo("Stephen"));
-            Assert.That(array.Get(1), Is.EqualTo("Matt"));
-            Assert.That(array.Get(2), Is.EqualTo("Kyle"));
+            Assert.That(array.Get(1), Is.EqualTo("Michael"));
+            Assert.That(array.Get(2), Is.EqualTo("Is"));
+            Assert.That(array.Get(3), Is.EqualTo("Wright"));
         }
+
+
+        [Test]
+        public void delete()
+        {
+            array.add("Stephen");
+            array.add("Michael");
+            array.add("Wright");
+
+            array.delete(1);
+
+            Assert.That(array.Get(0), Is.EqualTo("Stephen"));
+            Assert.That(array.Get(1), Is.EqualTo("Wright"));
+        }
+
+
+        [Test]
+        public void IsEmpty()
+        {
+            Assert.That(array.isEmpty(), Is.True);
+        }
+
+        [Test]
+        public void IsEmptyReturnsFalse()
+        {
+            array.add("Stephen");
+            array.add("Wright");
+
+            array.delete(1);
+
+            Assert.That(array.isEmpty(), Is.False);
+
+        }
+
+
+        [Test]
+        public void ContainsReturnTrue()
+        {
+            array.add("Stephen");
+            array.add("Wright");
+
+            Assert.That(array.Contains("Wright"), Is.True);
+        }
+        
+        [Test]
+        public void ContainsReturnsFalse()
+        {
+            array.add("Stephen");
+            array.add("Wright");
+
+            Assert.That(array.Contains("Michael"), Is.False);
+        }
+
+
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlgorithmsAndDataStructures
 {
-    public class DynamicArray
+    public class DynamicArray<String>
     {
         private object[] data;
         private int size;
@@ -17,6 +17,8 @@ namespace AlgorithmsAndDataStructures
             this.initialCapacity = initialCapacity;
             data = new object[initialCapacity];
         }
+
+        public int sizeOf() { return size; }
 
         public string Get(int index)
         {
@@ -45,6 +47,14 @@ namespace AlgorithmsAndDataStructures
 
         }
 
+        public void add(String value)
+        {
+            if (size == initialCapacity)
+                resize();
+           
+            data[size] = value;
+            size++;
+        }
 
         private void resize()
         {
@@ -56,6 +66,41 @@ namespace AlgorithmsAndDataStructures
             data = newData;
             initialCapacity = initialCapacity * 2;
         }
+
+        public void delete(int index)
+        {
+            for (int j = index; j < size - 1; j++)
+            {
+                data[j] = data[j + 1];
+                data[j + 1] = null;
+            }
+            
+            size--;
+        }
+
+        public bool isEmpty()
+        {
+            return size == 0;         
+        }
+
+        public bool Contains(string value)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (data[j] == value)
+                    return true;
+            }
+
+            return false;           
+        }
+
+        public void Print()
+        {
+
+        }
+
+
+        
         
     }
 }
